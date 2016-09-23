@@ -17,5 +17,4 @@ public class ImportedProductTest
 
     assertThat(importedProduct.taxAmount(), is(new BigDecimal("15.00")));
   }
-
-}g
+}
