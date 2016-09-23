@@ -2,11 +2,11 @@ package com.gcipriano.katas;
 
 import com.gcipriano.katas.input.Input;
 
-public class SalesTaxes
+public class ShoppingBasket
 {
   private Input input;
 
-  public SalesTaxes(Input input)
+  public ShoppingBasket(Input input)
   {
     this.input = input;
   }

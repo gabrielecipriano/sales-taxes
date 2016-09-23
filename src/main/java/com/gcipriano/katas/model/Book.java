@@ -1,18 +1,32 @@
 package com.gcipriano.katas.model;
 
+import java.math.BigDecimal;
+
+import static java.math.BigDecimal.ZERO;
+
 public class Book implements Product
 {
-  private String amount;
+  private BigDecimal amount;
 
   public Book(String amount)
   {
-    this.amount = amount;
+    this.amount = new BigDecimal(amount);
+  }
+
+  @Override public BigDecimal taxAmount()
+  {
+    return ZERO;
+  }
+
+  @Override public BigDecimal amount()
+  {
+    return amount;
   }
 
   @Override public String toString()
   {
     return "Book{" +
-        "amount='" + amount + '\'' +
+        "amount=" + amount +
         '}';
   }
 

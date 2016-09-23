@@ -31,12 +31,22 @@ public class TextInputTest
   }
 
   @Test
-  public void priceWithDecimal() throws Exception
+  public void priceWithDecimalPrecision() throws Exception
   {
     TextInput textInput = new TextInput("1 music CD at 10.30"
                                             + " 1 book at 4.35");
 
     assertThat(textInput.process(), is(asList(new MusicCD("10.30"),
                                               new Book("4.35"))));
+  }
+
+  @Test
+  public void importedBook() throws Exception
+  {
+    TextInput textInput = new TextInput("1 music CD at 10.30"
+                                            + " 1 imported book at 4.35");
+
+    assertThat(textInput.process(), is(asList(new MusicCD("10.30"),
+                                              new ImportedProduct(new Book("4.35")))));
   }
 }

@@ -1,19 +1,29 @@
 package com.gcipriano.katas.model;
 
+import java.math.BigDecimal;
+
 public class MusicCD implements Product
 {
-  private String amount;
+  private BigDecimal amount;
 
   public MusicCD(String amount)
   {
-    this.amount = amount;
+    this.amount = new BigDecimal(amount);
   }
 
-  @Override public String toString()
+  @Override public BigDecimal taxAmount()
   {
-    return "MusicCD{" +
-        "amount='" + amount + '\'' +
-        '}';
+    return tenPercent();
+  }
+
+  @Override public BigDecimal amount()
+  {
+    return amount;
+  }
+
+  private BigDecimal tenPercent()
+  {
+    return amount.multiply(new BigDecimal(10)).divide(new BigDecimal(100));
   }
 
   @Override public boolean equals(Object o)
@@ -32,5 +42,12 @@ public class MusicCD implements Product
   @Override public int hashCode()
   {
     return amount != null ? amount.hashCode() : 0;
+  }
+
+  @Override public String toString()
+  {
+    return "MusicCD{" +
+        "amount=" + amount +
+        '}';
   }
 }

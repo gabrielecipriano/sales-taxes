@@ -30,18 +30,30 @@ public class TextInput implements Input
     {
       int quantity = parseInt(matcher.group(1));
       String name = matcher.group(2);
-      String description = matcher.group(3);
+      String amount = matcher.group(3);
 
       for (int i = 0; i < quantity; i++)
       {
-        products.add(productFrom(name, description));
+        products.add(productFrom(name, amount));
       }
     }
 
     return products;
   }
 
-  private Product productFrom(String name, String amount)
+  private Product productFrom(String description, String amount)
+  {
+    if (description.contains("imported"))
+    {
+      String name = description.replaceAll("imported ", "");
+
+      return new ImportedProduct(productOf(name, amount));
+    }
+
+    return productOf(description, amount);
+  }
+
+  private Product productOf(String name, String amount)
   {
     switch (name)
     {
@@ -50,6 +62,6 @@ public class TextInput implements Input
       case "chocolate bar": return new ChocolateBar(amount);
     }
 
-    throw new IllegalArgumentException();
+    return new Book(name);
   }
 }
