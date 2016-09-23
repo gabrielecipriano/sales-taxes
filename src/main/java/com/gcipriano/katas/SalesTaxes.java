@@ -1,13 +1,14 @@
 package com.gcipriano.katas;
 
 import com.gcipriano.katas.input.Input;
-import com.gcipriano.katas.input.TextInput;
 
 public class SalesTaxes
 {
+  private Input input;
+
   public SalesTaxes(Input input)
   {
-    input.process();
+    this.input = input;
   }
 
   public String receipt()
