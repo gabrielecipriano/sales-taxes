@@ -11,7 +11,7 @@ import static java.lang.Integer.parseInt;
 
 public class TextInput implements Input
 {
-  private static final String PRODUCT_REGEX_PATTERN = "(\\d*) (\\D*) at (\\d*\\.\\d{2})";
+  private static final String PRODUCT_REGEX_PATTERN = "\\d* (\\D*) at (\\d*\\.\\d{2})";
 
   private String textInput;
 
@@ -28,14 +28,10 @@ public class TextInput implements Input
 
     while (matcher.find())
     {
-      int quantity = parseInt(matcher.group(1));
-      String name = matcher.group(2);
-      String amount = matcher.group(3);
+      String name = matcher.group(1);
+      String amount = matcher.group(2);
 
-      for (int i = 0; i < quantity; i++)
-      {
-        products.add(productFrom(name, amount));
-      }
+      products.add(productFrom(name, amount));
     }
 
     return products;
@@ -57,9 +53,12 @@ public class TextInput implements Input
   {
     switch (name)
     {
-      case "book": return new Book(amount);
-      case "music CD": return new MusicCD(amount);
-      case "chocolate bar": return new ChocolateBar(amount);
+      case "book":
+        return new Book(amount);
+      case "music CD":
+        return new MusicCD(amount);
+      case "chocolate bar":
+        return new ChocolateBar(amount);
     }
 
     return new Book(name);

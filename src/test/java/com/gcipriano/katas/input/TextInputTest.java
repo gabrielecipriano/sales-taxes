@@ -20,17 +20,6 @@ public class TextInputTest
   }
 
   @Test
-  public void twoMusicCDAndChocolateBar() throws Exception
-  {
-    TextInput textInput = new TextInput("2 music CD at 10.00"
-                                            + " 1 chocolate bar at 4.00");
-
-    assertThat(textInput.process(), is(asList(new MusicCD("10.00"),
-                                              new MusicCD("10.00"),
-                                              new ChocolateBar("4.00"))));
-  }
-
-  @Test
   public void priceWithDecimalPrecision() throws Exception
   {
     TextInput textInput = new TextInput("1 music CD at 10.30"
