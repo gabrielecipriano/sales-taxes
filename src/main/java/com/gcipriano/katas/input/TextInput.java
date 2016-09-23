@@ -54,13 +54,13 @@ public class TextInput implements Input
     switch (name)
     {
       case "book":
-        return new Book(amount);
+        return new TaxExemptedGood(amount, "book");
       case "music CD":
-        return new MusicCD(amount);
+        return new TenPercentTaxedProduct(amount, "music CD");
       case "chocolate bar":
-        return new ChocolateBar(amount);
+        return new TaxExemptedGood(amount, "chocolate bar");
     }
 
-    return new Book(name);
+    return new TaxExemptedGood(name, "book");
   }
 }

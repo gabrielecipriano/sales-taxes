@@ -4,13 +4,15 @@ import java.math.BigDecimal;
 
 import static java.math.BigDecimal.*;
 
-public class MusicCD implements Product
+public class TenPercentTaxedProduct implements Product
 {
+  private final String description;
   private BigDecimal amount;
 
-  public MusicCD(String amount)
+  public TenPercentTaxedProduct(String amount, String description)
   {
     this.amount = new BigDecimal(amount);
+    this.description = description;
   }
 
   @Override public BigDecimal taxAmount()
@@ -25,7 +27,7 @@ public class MusicCD implements Product
 
   @Override public String description()
   {
-    return "music CD";
+    return description;
   }
 
   private BigDecimal tenPercent()
@@ -45,9 +47,9 @@ public class MusicCD implements Product
     if (o == null || getClass() != o.getClass())
       return false;
 
-    MusicCD musicCD = (MusicCD) o;
+    TenPercentTaxedProduct tenPercentTaxedProduct = (TenPercentTaxedProduct) o;
 
-    return amount != null ? amount.equals(musicCD.amount) : musicCD.amount == null;
+    return amount != null ? amount.equals(tenPercentTaxedProduct.amount) : tenPercentTaxedProduct.amount == null;
 
   }
 
@@ -58,7 +60,7 @@ public class MusicCD implements Product
 
   @Override public String toString()
   {
-    return "MusicCD{" +
+    return "TenPercentTaxedProduct{" +
         "amount=" + amount +
         '}';
   }

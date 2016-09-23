@@ -4,15 +4,16 @@ import java.math.BigDecimal;
 
 import static java.math.BigDecimal.ZERO;
 
-public class Book implements Product
+public class TaxExemptedGood implements Product
 {
+  private final String description;
   private BigDecimal amount;
 
-  public Book(String amount)
+  public TaxExemptedGood(String amount, String description)
   {
     this.amount = new BigDecimal(amount);
+    this.description = description;
   }
-
 
   @Override public BigDecimal taxAmount()
   {
@@ -26,14 +27,7 @@ public class Book implements Product
 
   @Override public String description()
   {
-    return "book";
-  }
-
-  @Override public String toString()
-  {
-    return "Book{" +
-        "amount=" + amount +
-        '}';
+    return description;
   }
 
   @Override public boolean equals(Object o)
@@ -43,14 +37,21 @@ public class Book implements Product
     if (o == null || getClass() != o.getClass())
       return false;
 
-    Book book = (Book) o;
+    TaxExemptedGood that = (TaxExemptedGood) o;
 
-    return amount != null ? amount.equals(book.amount) : book.amount == null;
+    return amount != null ? amount.equals(that.amount) : that.amount == null;
 
   }
 
   @Override public int hashCode()
   {
     return amount != null ? amount.hashCode() : 0;
+  }
+
+  @Override public String toString()
+  {
+    return "TaxExemptedGood{" +
+        "amount=" + amount +
+        '}';
   }
 }
