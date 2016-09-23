@@ -2,10 +2,9 @@ package com.gcipriano.katas;
 
 import com.gcipriano.katas.input.Input;
 import com.gcipriano.katas.model.Product;
-import com.gcipriano.receipt.BulletPointReceipt;
+import com.gcipriano.katas.receipt.BulletPointReceipt;
 
 import java.math.BigDecimal;
-import java.util.LinkedList;
 import java.util.List;
 
 import static java.math.BigDecimal.ZERO;

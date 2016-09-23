@@ -1,4 +1,4 @@
-package com.gcipriano.receipt;
+package com.gcipriano.katas.receipt;
 
 public interface Receipt
 {

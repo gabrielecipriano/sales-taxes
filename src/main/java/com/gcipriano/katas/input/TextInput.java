@@ -63,6 +63,8 @@ public class TextInput implements Input
         return new TaxExemptedGood(amount, "box of chocolates");
       case "bottle of perfume":
         return new TenPercentTaxedProduct(amount, "bottle of perfume");
+      case "packet of headache pills":
+        return new TaxExemptedGood(amount, "packet of headache pills");
     }
 
     return new TaxExemptedGood(name, "book");
