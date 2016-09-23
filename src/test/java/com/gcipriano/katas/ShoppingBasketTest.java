@@ -3,6 +3,7 @@ package com.gcipriano.katas;
 import com.gcipriano.katas.input.Input;
 import com.gcipriano.katas.model.FixedAmountsProduct;
 import com.gcipriano.katas.model.Product;
+import com.gcipriano.katas.receipt.BulletPointReceipt;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -18,7 +19,8 @@ public class ShoppingBasketTest
   public void oneProductReceipt() throws Exception
   {
     ShoppingBasket basket = new ShoppingBasket(new FixedProductsInput(new FixedAmountsProduct(new BigDecimal("100"),
-                                                                                              new BigDecimal("2.45"))));
+                                                                                              new BigDecimal("2.45"))),
+                                               new BulletPointReceipt());
 
     assertThat(basket.receipt(), is("1 fixed product: 102.45\n"
                                         + "Sales Taxes: 2.45\n"

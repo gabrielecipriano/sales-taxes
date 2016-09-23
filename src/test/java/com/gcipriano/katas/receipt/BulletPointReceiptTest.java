@@ -1,5 +1,6 @@
 package com.gcipriano.katas.receipt;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
@@ -7,11 +8,17 @@ import static org.junit.Assert.*;
 
 public class BulletPointReceiptTest
 {
+  private BulletPointReceipt receipt;
+
+  @Before
+  public void setUp() throws Exception
+  {
+    receipt = new BulletPointReceipt();
+  }
+
   @Test
   public void oneProductReceipt() throws Exception
   {
-    BulletPointReceipt receipt = new BulletPointReceipt();
-
     receipt.addProduct("PRODUCT_NAME", "PRODUCT_PRICE");
     receipt.total("TOTAL");
     receipt.taxTotal("TAX_TOTAL");
@@ -24,8 +31,6 @@ public class BulletPointReceiptTest
   @Test
   public void twoProductReceipt() throws Exception
   {
-    BulletPointReceipt receipt = new BulletPointReceipt();
-
     receipt.addProduct("PRODUCT_NAME", "PRODUCT_PRICE");
     receipt.addProduct("ANOTHER_PRODUCT_NAME", "ANOTHER_PRODUCT_PRICE");
     receipt.total("TOTAL");

@@ -1,8 +1,7 @@
 package com.gcipriano.katas.model;
 
 import java.math.BigDecimal;
-
-import static java.math.BigDecimal.ROUND_HALF_UP;
+import java.math.RoundingMode;
 
 public class ImportedProduct implements Product
 {
@@ -35,9 +34,9 @@ public class ImportedProduct implements Product
     return round((product.amount()).multiply(new BigDecimal(5)).divide(ONE_HUNDRED));
   }
 
-  private BigDecimal round(BigDecimal toRound)
+  private BigDecimal round(BigDecimal divide)
   {
-    return new BigDecimal(Math.round(toRound.doubleValue() * 20) / 20.0).setScale(2, ROUND_HALF_UP);
+    return divide.setScale(1, RoundingMode.UP).setScale(2);
   }
 
   @Override public boolean equals(Object o)
