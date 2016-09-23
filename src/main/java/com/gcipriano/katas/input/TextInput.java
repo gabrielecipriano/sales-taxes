@@ -28,10 +28,10 @@ public class TextInput implements Input
 
     while (matcher.find())
     {
-      String name = matcher.group(1);
+      String description = matcher.group(1);
       String amount = matcher.group(2);
 
-      products.add(productFrom(name, amount));
+      products.add(productFrom(description, amount));
     }
 
     return products;

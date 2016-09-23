@@ -1,0 +1,42 @@
+package com.gcipriano.katas;
+
+import com.gcipriano.katas.input.Input;
+import com.gcipriano.katas.model.FixedAmountsProduct;
+import com.gcipriano.katas.model.Product;
+import org.junit.Test;
+
+import java.math.BigDecimal;
+import java.util.*;
+
+import static java.util.Collections.singletonList;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.*;
+
+public class ShoppingBasketTest
+{
+  @Test
+  public void oneProductReceipt() throws Exception
+  {
+    ShoppingBasket basket = new ShoppingBasket(new FixedProductsInput(new FixedAmountsProduct(new BigDecimal("100"),
+                                                                                              new BigDecimal("2.45"))));
+
+    assertThat(basket.receipt(), is("1 fixed product: 102.45\n"
+                                        + "Sales Taxes: 2.45\n"
+                                        + "Total: 102.45"));
+  }
+
+  private class FixedProductsInput implements Input
+  {
+    private FixedAmountsProduct fixedAmountsProduct;
+
+    public FixedProductsInput(FixedAmountsProduct fixedAmountsProduct)
+    {
+      this.fixedAmountsProduct = fixedAmountsProduct;
+    }
+
+    @Override public List<Product> process()
+    {
+      return singletonList(fixedAmountsProduct);
+    }
+  }
+}

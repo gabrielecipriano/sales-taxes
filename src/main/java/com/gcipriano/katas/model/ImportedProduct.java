@@ -2,6 +2,8 @@ package com.gcipriano.katas.model;
 
 import java.math.BigDecimal;
 
+import static java.math.BigDecimal.ROUND_HALF_UP;
+
 public class ImportedProduct implements Product
 {
   private static final BigDecimal ONE_HUNDRED = new BigDecimal(100);
@@ -23,9 +25,19 @@ public class ImportedProduct implements Product
     return product.amount();
   }
 
+  @Override public String description()
+  {
+    return "imported " + product.description();
+  }
+
   private BigDecimal applyFivePercent()
   {
-    return (product.amount()).multiply(new BigDecimal(5)).divide(ONE_HUNDRED);
+    return round((product.amount()).multiply(new BigDecimal(5)).divide(ONE_HUNDRED));
+  }
+
+  private BigDecimal round(BigDecimal toRound)
+  {
+    return new BigDecimal(Math.round(toRound.doubleValue() * 20) / 20.0).setScale(2, ROUND_HALF_UP);
   }
 
   @Override public boolean equals(Object o)

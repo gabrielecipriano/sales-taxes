@@ -2,6 +2,8 @@ package com.gcipriano.katas.model;
 
 import java.math.BigDecimal;
 
+import static java.math.BigDecimal.*;
+
 public class MusicCD implements Product
 {
   private BigDecimal amount;
@@ -21,9 +23,19 @@ public class MusicCD implements Product
     return amount;
   }
 
+  @Override public String description()
+  {
+    return "music CD";
+  }
+
   private BigDecimal tenPercent()
   {
-    return amount.multiply(new BigDecimal(10)).divide(new BigDecimal(100));
+    return round(amount.multiply(new BigDecimal(10)).divide(new BigDecimal(100)));
+  }
+
+  private BigDecimal round(BigDecimal toRound)
+  {
+    return new BigDecimal(Math.round(toRound.doubleValue() * 20) / 20.0).setScale(2, ROUND_HALF_UP);
   }
 
   @Override public boolean equals(Object o)

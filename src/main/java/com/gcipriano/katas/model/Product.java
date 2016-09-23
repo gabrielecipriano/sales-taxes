@@ -7,4 +7,6 @@ public interface Product
   BigDecimal taxAmount();
 
   BigDecimal amount();
+
+  String description();
 }

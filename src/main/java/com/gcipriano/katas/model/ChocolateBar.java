@@ -23,6 +23,11 @@ public class ChocolateBar implements Product
     return amount;
   }
 
+  @Override public String description()
+  {
+    return "chocolate bar";
+  }
+
   @Override public boolean equals(Object o)
   {
     if (this == o)

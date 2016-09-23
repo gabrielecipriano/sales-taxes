@@ -13,6 +13,7 @@ public class Book implements Product
     this.amount = new BigDecimal(amount);
   }
 
+
   @Override public BigDecimal taxAmount()
   {
     return ZERO;
@@ -21,6 +22,11 @@ public class Book implements Product
   @Override public BigDecimal amount()
   {
     return amount;
+  }
+
+  @Override public String description()
+  {
+    return "book";
   }
 
   @Override public String toString()

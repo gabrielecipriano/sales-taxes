@@ -1,6 +1,14 @@
 package com.gcipriano.katas;
 
 import com.gcipriano.katas.input.Input;
+import com.gcipriano.katas.model.Product;
+import com.gcipriano.receipt.BulletPointReceipt;
+
+import java.math.BigDecimal;
+import java.util.LinkedList;
+import java.util.List;
+
+import static java.math.BigDecimal.ZERO;
 
 public class ShoppingBasket
 {
@@ -13,10 +21,25 @@ public class ShoppingBasket
 
   public String receipt()
   {
-    return "1 book : 12.49\n"
-        + "1 music CD: 16.49\n"
-        + "1 chocolate bar: 0.85\n"
-        + "Sales Taxes: 1.50\n"
-        + "Total: 29.83 ";
+    List<Product> products = input.process();
+
+    BulletPointReceipt receipt = new BulletPointReceipt();
+
+    BigDecimal taxTotalAmount = ZERO;
+    BigDecimal totalAmount = ZERO;
+
+    for (Product product : products)
+    {
+      BigDecimal finalPrice = product.amount().add(product.taxAmount());
+      taxTotalAmount = taxTotalAmount.add(product.taxAmount());
+      totalAmount = totalAmount.add(finalPrice);
+
+      receipt.addProduct(product.description(), finalPrice.toString());
+    }
+
+    receipt.taxTotal(taxTotalAmount.toString());
+    receipt.total(totalAmount.toString());
+
+    return receipt.render();
   }
 }
