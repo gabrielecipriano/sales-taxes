@@ -19,6 +19,6 @@ public class TaxingStrategyTest
   @Test
   public void tenPercent() throws Exception
   {
-    assertThat(TEN_PERCENT.tax(), is(instanceOf(TenPercent.class)));
+    assertThat(TEN_PERCENT.tax(), is(instanceOf(PercentageTax.class)));
   }
 }
