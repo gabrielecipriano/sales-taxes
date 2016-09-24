@@ -1,5 +1,6 @@
 package com.gcipriano.katas.model.product;
 
+import com.gcipriano.katas.model.taxing.TaxExemptStrategy;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,4 +1,6 @@
-package com.gcipriano.katas.model.product;
+package com.gcipriano.katas.model.taxing;
+
+import com.gcipriano.katas.model.product.AppliableStrategy;
 
 import java.math.BigDecimal;
 
