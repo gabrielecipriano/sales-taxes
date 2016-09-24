@@ -47,21 +47,26 @@ public class TenPercentTaxedProduct implements Product
     if (o == null || getClass() != o.getClass())
       return false;
 
-    TenPercentTaxedProduct tenPercentTaxedProduct = (TenPercentTaxedProduct) o;
+    TenPercentTaxedProduct that = (TenPercentTaxedProduct) o;
 
-    return amount != null ? amount.equals(tenPercentTaxedProduct.amount) : tenPercentTaxedProduct.amount == null;
+    if (description != null ? !description.equals(that.description) : that.description != null)
+      return false;
+    return amount != null ? amount.equals(that.amount) : that.amount == null;
 
   }
 
   @Override public int hashCode()
   {
-    return amount != null ? amount.hashCode() : 0;
+    int result = description != null ? description.hashCode() : 0;
+    result = 31 * result + (amount != null ? amount.hashCode() : 0);
+    return result;
   }
 
   @Override public String toString()
   {
     return "TenPercentTaxedProduct{" +
-        "amount=" + amount +
+        "description='" + description + '\'' +
+        ", amount=" + amount +
         '}';
   }
 }

@@ -25,11 +25,6 @@ public class TaxExemptedGood implements Product
     return amount;
   }
 
-  @Override public String description()
-  {
-    return description;
-  }
-
   @Override public boolean equals(Object o)
   {
     if (this == o)
@@ -39,19 +34,29 @@ public class TaxExemptedGood implements Product
 
     TaxExemptedGood that = (TaxExemptedGood) o;
 
+    if (description != null ? !description.equals(that.description) : that.description != null)
+      return false;
     return amount != null ? amount.equals(that.amount) : that.amount == null;
 
   }
 
   @Override public int hashCode()
   {
-    return amount != null ? amount.hashCode() : 0;
+    int result = description != null ? description.hashCode() : 0;
+    result = 31 * result + (amount != null ? amount.hashCode() : 0);
+    return result;
+  }
+
+  @Override public String description()
+  {
+    return description;
   }
 
   @Override public String toString()
   {
     return "TaxExemptedGood{" +
-        "amount=" + amount +
+        "description='" + description + '\'' +
+        ", amount=" + amount +
         '}';
   }
 }
