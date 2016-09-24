@@ -29,6 +29,11 @@ public class ImportedProduct implements Product
     return "imported " + product.description();
   }
 
+  @Override public BigDecimal taxedPrice()
+  {
+    return amount().add(taxAmount());
+  }
+
   private BigDecimal applyFivePercent()
   {
     return round((product.amount()).multiply(new BigDecimal(5)).divide(ONE_HUNDRED));

@@ -9,4 +9,6 @@ public interface Product
   BigDecimal amount();
 
   String description();
+
+  BigDecimal taxedPrice();
 }

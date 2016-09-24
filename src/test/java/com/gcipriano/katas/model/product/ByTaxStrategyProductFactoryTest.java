@@ -1,8 +1,7 @@
-package com.gcipriano.katas.model;
+package com.gcipriano.katas.model.product;
 
 import com.gcipriano.katas.model.product.*;
-import com.gcipriano.katas.model.taxing.TaxingStrategy;
-import com.gcipriano.katas.model.taxing.TaxingStrategyRepository;
+import com.gcipriano.katas.model.taxing.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,18 +9,18 @@ import static com.gcipriano.katas.model.taxing.TaxingStrategy.*;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
-public class ProductFactoryTest
+public class ByTaxStrategyProductFactoryTest
 {
   private static final String TAX_EXEMPT_PRODUCT = "TAX_EXEMPT_PRODUCT";
   private static final String TEN_PERCENT_TAXED_PRODUCT = "TEN_PERCENT_TAXED_PRODUCT";
   private static final String UNKNOWN_PRODUCT = "UNKNOWN PRODUCT";
 
-  private ProductFactory productFactory;
+  private ByTaxStrategyProductFactory productFactory;
 
   @Before
   public void setUp() throws Exception
   {
-    productFactory = new ProductFactory(new FakeTaxingStrategyRepository());
+    productFactory = new ByTaxStrategyProductFactory(new FakeTaxingStrategyRepository());
   }
 
   @Test
@@ -29,7 +28,7 @@ public class ProductFactoryTest
   {
     Product product = productFactory.productFrom(TAX_EXEMPT_PRODUCT, "3");
 
-    assertThat(product, is(new TaxExemptedProduct("3", TAX_EXEMPT_PRODUCT)));
+    assertThat(product, is(new NotImportedProduct("3", TAX_EXEMPT_PRODUCT, TAX_EXEMPT.tax())));
   }
 
   @Test
@@ -37,7 +36,7 @@ public class ProductFactoryTest
   {
     Product product = productFactory.productFrom(TEN_PERCENT_TAXED_PRODUCT, "1");
 
-    assertThat(product, is(new TenPercentTaxedProduct("1", TEN_PERCENT_TAXED_PRODUCT)));
+    assertThat(product, is(new NotImportedProduct("1", TEN_PERCENT_TAXED_PRODUCT, TEN_PERCENT.tax())));
   }
 
   @Test
@@ -45,7 +44,7 @@ public class ProductFactoryTest
   {
     Product product = productFactory.productFrom("imported " + TEN_PERCENT_TAXED_PRODUCT, "1");
 
-    assertThat(product, is(new ImportedProduct(new TenPercentTaxedProduct("1", TEN_PERCENT_TAXED_PRODUCT))));
+    assertThat(product, is(new ImportedProduct(new NotImportedProduct("1", TEN_PERCENT_TAXED_PRODUCT, TEN_PERCENT.tax()))));
   }
 
   @Test
@@ -53,7 +52,7 @@ public class ProductFactoryTest
   {
     Product product = productFactory.productFrom("imported " + TAX_EXEMPT_PRODUCT, "1");
 
-    assertThat(product, is(new ImportedProduct(new TaxExemptedProduct("1", TAX_EXEMPT_PRODUCT))));
+    assertThat(product, is(new ImportedProduct(new NotImportedProduct("1", TAX_EXEMPT_PRODUCT, TAX_EXEMPT.tax()))));
   }
 
   @Test(expected = IllegalArgumentException.class)

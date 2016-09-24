@@ -1,6 +1,8 @@
 package com.gcipriano.katas;
 
 import com.gcipriano.katas.input.TextInput;
+import com.gcipriano.katas.model.product.ByTaxStrategyProductFactory;
+import com.gcipriano.katas.model.taxing.InMemoryTaxingStrategyRepository;
 import com.gcipriano.katas.receipt.BulletPointReceipt;
 import org.junit.Test;
 
@@ -14,7 +16,8 @@ public class AcceptanceTest
   {
     ShoppingBasket shoppingBasket = new ShoppingBasket(new TextInput("1 book at 12.49 "
                                                                    + "1 music CD at 14.99 "
-                                                                   + "1 chocolate bar at 0.85 "),
+                                                                   + "1 chocolate bar at 0.85 ",
+                                                                     new ByTaxStrategyProductFactory(new InMemoryTaxingStrategyRepository())),
                                                        new BulletPointReceipt());
 
     assertThat(shoppingBasket.receipt(), is("1 book: 12.49\n"
@@ -28,7 +31,8 @@ public class AcceptanceTest
   public void secondScenario() throws Exception
   {
     ShoppingBasket shoppingBasket = new ShoppingBasket(new TextInput("1 imported box of chocolates at 10.00 "
-                                                                   + "1 imported bottle of perfume at 47.50"),
+                                                                   + "1 imported bottle of perfume at 47.50",
+                                                                     new ByTaxStrategyProductFactory(new InMemoryTaxingStrategyRepository())),
                                                        new BulletPointReceipt());
 
     assertThat(shoppingBasket.receipt(), is("1 imported box of chocolates: 10.50\n"
@@ -44,7 +48,8 @@ public class AcceptanceTest
     ShoppingBasket shoppingBasket = new ShoppingBasket(new TextInput("1 imported bottle of perfume at 27.99 "
                                                                    + "1 bottle of perfume at 18.99 "
                                                                    + "1 packet of headache pills at 9.75 "
-                                                                   + "1 imported box of chocolates at 11.25"),
+                                                                   + "1 imported box of chocolates at 11.25",
+                                                                     new ByTaxStrategyProductFactory(new InMemoryTaxingStrategyRepository())),
                                                        new BulletPointReceipt());
 
     assertThat(shoppingBasket.receipt(), is("1 imported bottle of perfume: 32.19\n"

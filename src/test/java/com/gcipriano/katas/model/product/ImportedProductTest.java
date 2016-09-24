@@ -1,6 +1,5 @@
-package com.gcipriano.katas.model;
+package com.gcipriano.katas.model.product;
 
-import com.gcipriano.katas.model.product.ImportedProduct;
 import org.junit.Test;
 
 import java.math.BigDecimal;

@@ -1,7 +1,7 @@
 package com.gcipriano.katas;
 
 import com.gcipriano.katas.input.Input;
-import com.gcipriano.katas.model.FixedAmountsProduct;
+import com.gcipriano.katas.model.product.FixedAmountsProduct;
 import com.gcipriano.katas.model.product.Product;
 import com.gcipriano.katas.receipt.BulletPointReceipt;
 import org.junit.Test;

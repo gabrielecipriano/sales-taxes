@@ -26,7 +26,7 @@ public class ShoppingBasket
 
     for (Product product : input.convert())
     {
-      BigDecimal finalPrice = product.amount().add(product.taxAmount());
+      BigDecimal finalPrice = product.taxedPrice();
       taxTotalAmount = taxTotalAmount.add(product.taxAmount());
       totalAmount = totalAmount.add(finalPrice);
 

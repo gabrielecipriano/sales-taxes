@@ -8,28 +8,28 @@ import static java.math.BigDecimal.ONE;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class AppliableTaxProductTest
+public class NotImportedProductTest
 {
-  private Tax tax = new DummyTax();
+  private Tax tax = new PlusOneTax();
 
   @Test
   public void applyStrategy() throws Exception
   {
-    AppliableTaxProduct product = new AppliableTaxProduct(null, "2.2", tax);
+    NotImportedProduct product = new NotImportedProduct("2.2", null, tax);
 
-    assertThat(product.taxAmount(), is(new BigDecimal("3.2")));
+    assertThat(product.taxAmount(), is(new BigDecimal("3.20")));
   }
 
   @Test
   public void nameAndAmount() throws Exception
   {
-    AppliableTaxProduct product = new AppliableTaxProduct("NAME", "2.2", null);
+    NotImportedProduct product = new NotImportedProduct("2.2", "NAME", null);
 
     assertThat(product.amount(), is(new BigDecimal("2.2")));
     assertThat(product.description(), is("NAME"));
   }
 
-  private class DummyTax implements Tax
+  private class PlusOneTax implements Tax
   {
     @Override public BigDecimal applyOn(BigDecimal amount)
     {

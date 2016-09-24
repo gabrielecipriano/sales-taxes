@@ -1,4 +1,4 @@
-package com.gcipriano.katas.model;
+package com.gcipriano.katas.model.product;
 
 import com.gcipriano.katas.model.product.Product;
 
@@ -28,5 +28,10 @@ public class FixedAmountsProduct implements Product
   @Override public String description()
   {
     return "fixed product";
+  }
+
+  @Override public BigDecimal taxedPrice()
+  {
+    return fixedAmount.add(fixedTaxAmount);
   }
 }

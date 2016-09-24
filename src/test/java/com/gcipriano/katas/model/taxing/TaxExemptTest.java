@@ -19,10 +19,10 @@ public class TaxExemptTest
   }
 
   @Test
-  public void shouldReturnSameAmount() throws Exception
+  public void shouldReturnZero() throws Exception
   {
     assertThat(taxExempt.applyOn(ZERO), is(ZERO));
-    assertThat(taxExempt.applyOn(ONE), is(ONE));
-    assertThat(taxExempt.applyOn(TEN), is(TEN));
+    assertThat(taxExempt.applyOn(ONE), is(ZERO));
+    assertThat(taxExempt.applyOn(TEN), is(ZERO));
   }
 }

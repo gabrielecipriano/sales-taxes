@@ -1,8 +1,6 @@
 package com.gcipriano.katas.input;
 
-import com.gcipriano.katas.model.product.Product;
-import com.gcipriano.katas.model.product.ProductFactory;
-import com.gcipriano.katas.model.taxing.InMemoryTaxingStrategyRepository;
+import com.gcipriano.katas.model.product.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +16,10 @@ public class TextInput implements Input
 
   private String textInput;
 
-  public TextInput(String textInput)
+  public TextInput(String textInput, ProductFactory productFactory)
   {
     this.textInput = textInput;
-    productFactory = new ProductFactory(new InMemoryTaxingStrategyRepository());
+    this.productFactory = productFactory;
   }
 
   public List<Product> convert()
