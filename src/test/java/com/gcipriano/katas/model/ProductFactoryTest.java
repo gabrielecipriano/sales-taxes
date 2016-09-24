@@ -47,4 +47,10 @@ public class ProductFactoryTest
   {
     assertThat(productFactory.productFrom("packet of headache pills", "232"), is(new TaxExemptedProduct("232", "packet of headache pills")));
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void notRecognizedProduct() throws Exception
+  {
+    productFactory.productFrom("UNKNOW PRODUCT", "");
+  }
 }
