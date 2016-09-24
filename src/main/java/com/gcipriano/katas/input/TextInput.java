@@ -31,27 +31,9 @@ public class TextInput implements Input
       String description = matcher.group(1);
       String amount = matcher.group(2);
 
-      products.add(productFrom(description, amount));
+      products.add(new ProductFactory(new InMemoryTaxingStrategyRepository()).productFrom(description, amount));
     }
 
     return products;
-  }
-
-  private Product productFrom(String description, String amount)
-  {
-    if (description.contains("imported"))
-    {
-      String name = description.replaceAll("imported ", "");
-
-      return new ImportedProduct(productOf(name, amount));
-    }
-
-    return productOf(description, amount);
-  }
-
-  private Product productOf(String name, String amount)
-  {
-    return new ProductFactory(new InMemoryTaxingStrategyRepository()).productFrom(name, amount);
-  }
-
+  }g
 }
