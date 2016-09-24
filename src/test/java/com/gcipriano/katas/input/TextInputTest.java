@@ -15,7 +15,7 @@ public class TextInputTest
     TextInput textInput = new TextInput("1 book at 3.00"
                                             + " 1 music CD at 10.00");
 
-    assertThat(textInput.process(), is(asList(new TaxExemptedGood("3.00", "book"),
+    assertThat(textInput.process(), is(asList(new TaxExemptedProduct("3.00", "book"),
                                               new TenPercentTaxedProduct("10.00", "music CD"))));
   }
 
@@ -26,7 +26,7 @@ public class TextInputTest
                                             + " 1 book at 4.35");
 
     assertThat(textInput.process(), is(asList(new TenPercentTaxedProduct("10.30", "music CD"),
-                                              new TaxExemptedGood("4.35", "book"))));
+                                              new TaxExemptedProduct("4.35", "book"))));
   }
 
   @Test
@@ -36,6 +36,6 @@ public class TextInputTest
                                             + " 1 imported book at 4.35");
 
     assertThat(textInput.process(), is(asList(new TenPercentTaxedProduct("10.30", "music CD"),
-                                              new ImportedProduct(new TaxExemptedGood("4.35", "book")))));
+                                              new ImportedProduct(new TaxExemptedProduct("4.35", "book")))));
   }
 }

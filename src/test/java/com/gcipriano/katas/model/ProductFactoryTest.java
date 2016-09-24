@@ -20,7 +20,7 @@ public class ProductFactoryTest
   @Test
   public void book() throws Exception
   {
-    assertThat(productFactory.productFrom("book", "3"), is(new TaxExemptedGood("3", "book")));
+    assertThat(productFactory.productFrom("book", "3"), is(new TaxExemptedProduct("3", "book")));
   }
 
   @Test
@@ -33,18 +33,18 @@ public class ProductFactoryTest
   @Test
   public void chocolateBar() throws Exception
   {
-    assertThat(productFactory.productFrom("chocolate bar", "2"), is(new TaxExemptedGood("2", "chocolate bar")));
+    assertThat(productFactory.productFrom("chocolate bar", "2"), is(new TaxExemptedProduct("2", "chocolate bar")));
   }
 
   @Test
   public void boxOfChocolate() throws Exception
   {
-    assertThat(productFactory.productFrom("box of chocolates", "123"), is(new TaxExemptedGood("123", "box of chocolates")));
+    assertThat(productFactory.productFrom("box of chocolates", "123"), is(new TaxExemptedProduct("123", "box of chocolates")));
   }
 
   @Test
   public void headachePills() throws Exception
   {
-    assertThat(productFactory.productFrom("packet of headache pills", "232"), is(new TaxExemptedGood("232", "packet of headache pills")));
+    assertThat(productFactory.productFrom("packet of headache pills", "232"), is(new TaxExemptedProduct("232", "packet of headache pills")));
   }
 }
