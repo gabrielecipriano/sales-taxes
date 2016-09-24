@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface Input
 {
-  List<Product> process();
+  List<Product> convert();
 }

@@ -36,7 +36,7 @@ public class ShoppingBasketTest
       this.fixedAmountsProduct = fixedAmountsProduct;
     }
 
-    @Override public List<Product> process()
+    @Override public List<Product> convert()
     {
       return singletonList(fixedAmountsProduct);
     }

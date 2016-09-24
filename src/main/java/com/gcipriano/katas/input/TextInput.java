@@ -12,28 +12,35 @@ import static java.lang.Integer.parseInt;
 public class TextInput implements Input
 {
   private static final String PRODUCT_REGEX_PATTERN = "\\d* (\\D*) at (\\d*\\.\\d{2})";
+  private final ProductFactory productFactory;
 
   private String textInput;
 
   public TextInput(String textInput)
   {
     this.textInput = textInput;
+    productFactory = new ProductFactory(new InMemoryTaxingStrategyRepository());
   }
 
-  public List<Product> process()
+  public List<Product> convert()
   {
     List<Product> products = new ArrayList<>();
 
     Matcher matcher = Pattern.compile(PRODUCT_REGEX_PATTERN).matcher(textInput);
 
-    while (matcher.find())
+    while (hasNextProduct(matcher))
     {
       String description = matcher.group(1);
       String amount = matcher.group(2);
 
-      products.add(new ProductFactory(new InMemoryTaxingStrategyRepository()).productFrom(description, amount));
+      products.add(productFactory.productFrom(description, amount));
     }
 
     return products;
+  }
+
+  private boolean hasNextProduct(Matcher matcher)
+  {
+    return matcher.find();
   }
 }
