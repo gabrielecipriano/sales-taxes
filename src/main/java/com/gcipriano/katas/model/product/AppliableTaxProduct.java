@@ -2,22 +2,22 @@ package com.gcipriano.katas.model.product;
 
 import java.math.BigDecimal;
 
-public class AppliableStrategyProduct implements Product
+public class AppliableTaxProduct implements Product
 {
   private final String name;
   private final BigDecimal amount;
-  private final AppliableStrategy appliableStrategy;
+  private final Tax tax;
 
-  public AppliableStrategyProduct(String name, String amount, AppliableStrategy appliableStrategy)
+  public AppliableTaxProduct(String name, String amount, Tax tax)
   {
     this.name = name;
     this.amount = new BigDecimal(amount);
-    this.appliableStrategy = appliableStrategy;
+    this.tax = tax;
   }
 
   @Override public BigDecimal taxAmount()
   {
-    return appliableStrategy.applyOn(amount);
+    return tax.applyOn(amount);
   }
 
   @Override public BigDecimal amount()
@@ -37,15 +37,15 @@ public class AppliableStrategyProduct implements Product
     if (o == null || getClass() != o.getClass())
       return false;
 
-    AppliableStrategyProduct that = (AppliableStrategyProduct) o;
+    AppliableTaxProduct that = (AppliableTaxProduct) o;
 
     if (name != null ? !name.equals(that.name) : that.name != null)
       return false;
     if (amount != null ? !amount.equals(that.amount) : that.amount != null)
       return false;
-    return appliableStrategy != null ?
-        appliableStrategy.equals(that.appliableStrategy) :
-        that.appliableStrategy == null;
+    return tax != null ?
+        tax.equals(that.tax) :
+        that.tax == null;
 
   }
 
@@ -53,16 +53,16 @@ public class AppliableStrategyProduct implements Product
   {
     int result = name != null ? name.hashCode() : 0;
     result = 31 * result + (amount != null ? amount.hashCode() : 0);
-    result = 31 * result + (appliableStrategy != null ? appliableStrategy.hashCode() : 0);
+    result = 31 * result + (tax != null ? tax.hashCode() : 0);
     return result;
   }
 
   @Override public String toString()
   {
-    return "AppliableStrategyProduct{" +
+    return "AppliableTaxProduct{" +
         "name='" + name + '\'' +
         ", amount=" + amount +
-        ", appliableStrategy=" + appliableStrategy +
+        ", tax=" + tax +
         '}';
   }
 }

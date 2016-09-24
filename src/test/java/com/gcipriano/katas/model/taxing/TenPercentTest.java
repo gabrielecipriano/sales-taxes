@@ -10,14 +10,14 @@ import static java.math.BigDecimal.TEN;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
-public class TaxOfTenPercentStrategyTest
+public class TenPercentTest
 {
-  private TaxOfTenPercentStrategy tenPercent;
+  private TenPercent tenPercent;
 
   @Before
   public void setUp() throws Exception
   {
-    tenPercent = new TaxOfTenPercentStrategy();
+    tenPercent = new TenPercent();
   }
 
   @Test

@@ -1,12 +1,12 @@
 package com.gcipriano.katas.model.taxing;
 
-import com.gcipriano.katas.model.product.AppliableStrategy;
+import com.gcipriano.katas.model.product.Tax;
 
 import java.math.BigDecimal;
 
 import static java.math.BigDecimal.TEN;
 
-public class TaxOfTenPercentStrategy implements AppliableStrategy
+public class TenPercent implements Tax
 {
   private static final BigDecimal ONE_HUNDRED = new BigDecimal("100");
 
