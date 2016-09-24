@@ -1,6 +1,8 @@
 package com.gcipriano.katas.input;
 
-import com.gcipriano.katas.model.*;
+import com.gcipriano.katas.model.product.Product;
+import com.gcipriano.katas.model.product.ProductFactory;
+import com.gcipriano.katas.model.taxing.InMemoryTaxingStrategyRepository;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,12 @@
 package com.gcipriano.katas.model;
 
+import com.gcipriano.katas.model.product.*;
+import com.gcipriano.katas.model.taxing.TaxingStrategy;
+import com.gcipriano.katas.model.taxing.TaxingStrategyRepository;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.gcipriano.katas.model.TaxingStrategy.*;
+import static com.gcipriano.katas.model.taxing.TaxingStrategy.*;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 

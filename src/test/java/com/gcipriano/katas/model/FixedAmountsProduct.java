@@ -1,5 +1,7 @@
 package com.gcipriano.katas.model;
 
+import com.gcipriano.katas.model.product.Product;
+
 import java.math.BigDecimal;
 
 public class FixedAmountsProduct implements Product

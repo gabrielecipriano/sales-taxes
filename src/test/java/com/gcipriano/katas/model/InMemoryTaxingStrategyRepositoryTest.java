@@ -1,10 +1,11 @@
 package com.gcipriano.katas.model;
 
+import com.gcipriano.katas.model.taxing.InMemoryTaxingStrategyRepository;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.gcipriano.katas.model.TaxingStrategy.*;
-import static com.gcipriano.katas.model.TaxingStrategy.TAX_EXEMPT;
+import static com.gcipriano.katas.model.taxing.TaxingStrategy.*;
+import static com.gcipriano.katas.model.taxing.TaxingStrategy.TAX_EXEMPT;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 

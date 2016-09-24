@@ -1,6 +1,6 @@
-package com.gcipriano.katas.model;
+package com.gcipriano.katas.model.taxing;
 
-import static com.gcipriano.katas.model.TaxingStrategy.*;
+import static com.gcipriano.katas.model.taxing.TaxingStrategy.*;
 
 public class InMemoryTaxingStrategyRepository implements TaxingStrategyRepository
 {

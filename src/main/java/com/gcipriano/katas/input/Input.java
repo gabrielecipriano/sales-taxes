@@ -1,6 +1,6 @@
 package com.gcipriano.katas.input;
 
-import com.gcipriano.katas.model.Product;
+import com.gcipriano.katas.model.product.Product;
 
 import java.util.List;
 

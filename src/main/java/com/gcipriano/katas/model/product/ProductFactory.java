@@ -1,4 +1,6 @@
-package com.gcipriano.katas.model;
+package com.gcipriano.katas.model.product;
+
+import com.gcipriano.katas.model.taxing.TaxingStrategyRepository;
 
 public class ProductFactory
 {

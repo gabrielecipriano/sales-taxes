@@ -1,4 +1,4 @@
-package com.gcipriano.katas.model;
+package com.gcipriano.katas.model.product;
 
 import java.math.BigDecimal;
 

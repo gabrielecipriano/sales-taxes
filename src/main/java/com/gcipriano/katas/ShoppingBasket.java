@@ -1,7 +1,7 @@
 package com.gcipriano.katas;
 
 import com.gcipriano.katas.input.Input;
-import com.gcipriano.katas.model.Product;
+import com.gcipriano.katas.model.product.Product;
 import com.gcipriano.katas.receipt.Receipt;
 
 import java.math.BigDecimal;

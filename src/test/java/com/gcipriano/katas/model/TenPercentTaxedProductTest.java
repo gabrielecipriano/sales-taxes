@@ -1,5 +1,6 @@
 package com.gcipriano.katas.model;
 
+import com.gcipriano.katas.model.product.TenPercentTaxedProduct;
 import org.junit.Test;
 
 import java.math.BigDecimal;

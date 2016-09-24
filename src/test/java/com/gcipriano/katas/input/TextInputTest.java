@@ -1,6 +1,6 @@
 package com.gcipriano.katas.input;
 
-import com.gcipriano.katas.model.*;
+import com.gcipriano.katas.model.product.*;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
