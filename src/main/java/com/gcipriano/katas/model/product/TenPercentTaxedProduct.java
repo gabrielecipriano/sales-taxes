@@ -1,5 +1,7 @@
 package com.gcipriano.katas.model.product;
 
+import com.gcipriano.katas.model.taxing.TenPercent;
+
 import java.math.BigDecimal;
 
 import static java.math.BigDecimal.*;
@@ -32,7 +34,7 @@ public class TenPercentTaxedProduct implements Product
 
   private BigDecimal tenPercent()
   {
-    return round(amount.multiply(new BigDecimal(10)).divide(new BigDecimal(100)));
+    return round(new TenPercent().applyOn(amount));
   }
 
   private BigDecimal round(BigDecimal toRound)

@@ -1,5 +1,7 @@
 package com.gcipriano.katas.model.product;
 
+import com.gcipriano.katas.model.taxing.TaxExempt;
+
 import java.math.BigDecimal;
 
 import static java.math.BigDecimal.ZERO;
@@ -22,7 +24,7 @@ public class TaxExemptedProduct implements Product
 
   @Override public BigDecimal amount()
   {
-    return amount;
+    return new TaxExempt().applyOn(amount);
   }
 
   @Override public boolean equals(Object o)
