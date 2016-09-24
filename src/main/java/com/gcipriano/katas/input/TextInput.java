@@ -35,5 +35,5 @@ public class TextInput implements Input
     }
 
     return products;
-  }g
+  }
 }
