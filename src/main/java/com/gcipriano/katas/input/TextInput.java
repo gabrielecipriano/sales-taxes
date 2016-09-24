@@ -51,7 +51,7 @@ public class TextInput implements Input
 
   private Product productOf(String name, String amount)
   {
-    return new ProductFactory().productFrom(name, amount);
+    return new ProductFactory(new InMemoryTaxingStrategyRepository()).productFrom(name, amount);
   }
 
 }

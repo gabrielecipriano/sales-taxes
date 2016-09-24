@@ -2,24 +2,20 @@ package com.gcipriano.katas.model;
 
 public class ProductFactory
 {
+  private final TaxingStrategyRepository taxingStrategyRepository;
 
-  private final InMemoryTaxingStrategyRepository taxingStrategyRepository;
-
-  public ProductFactory()
+  public ProductFactory(TaxingStrategyRepository taxingStrategyRepository)
   {
-    taxingStrategyRepository = new InMemoryTaxingStrategyRepository();
+    this.taxingStrategyRepository = taxingStrategyRepository;
   }
 
   public Product productFrom(String name, String amount)
   {
-    TaxingStrategy taxingStrategy = taxingStrategyRepository.strategyFor(name);
-
-    switch (taxingStrategy)
+    switch (taxingStrategyRepository.strategyFor(name))
     {
-      case TAX_EXEMPT:
-        return new TaxExemptedProduct(amount, name);
-      case TEN_PERCENT:
-        return new TenPercentTaxedProduct(amount, name);
+      case TAX_EXEMPT: return new TaxExemptedProduct(amount, name);
+
+      case TEN_PERCENT: return new TenPercentTaxedProduct(amount, name);
     }
 
     throw new IllegalArgumentException("not recognized Product");

@@ -3,54 +3,60 @@ package com.gcipriano.katas.model;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.gcipriano.katas.model.TaxingStrategy.*;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class ProductFactoryTest
 {
+  private static final String TAX_EXEMPT_PRODUCT = "TAX_EXEMPT_PRODUCT";
+  private static final String TEN_PERCENT_TAXED_PRODUCT = "TEN_PERCENT_TAXED_PRODUCT";
+  private static final String UNKNOWN_PRODUCT = "UNKNOWN PRODUCT";
 
   private ProductFactory productFactory;
 
   @Before
   public void setUp() throws Exception
   {
-    productFactory = new ProductFactory();
+    productFactory = new ProductFactory(new FakeTaxingStrategyRepository());
   }
 
   @Test
-  public void book() throws Exception
+  public void taxExemptStrategy() throws Exception
   {
-    assertThat(productFactory.productFrom("book", "3"), is(new TaxExemptedProduct("3", "book")));
+    Product product = productFactory.productFrom(TAX_EXEMPT_PRODUCT, "3");
+
+    assertThat(product, is(new TaxExemptedProduct("3", TAX_EXEMPT_PRODUCT)));
   }
 
   @Test
   public void musicCD() throws Exception
   {
-    assertThat(productFactory.productFrom("music CD", "1"), is(new TenPercentTaxedProduct("1", "music CD")));
-  }
+    Product product = productFactory.productFrom(TEN_PERCENT_TAXED_PRODUCT, "1");
 
-
-  @Test
-  public void chocolateBar() throws Exception
-  {
-    assertThat(productFactory.productFrom("chocolate bar", "2"), is(new TaxExemptedProduct("2", "chocolate bar")));
-  }
-
-  @Test
-  public void boxOfChocolate() throws Exception
-  {
-    assertThat(productFactory.productFrom("box of chocolates", "123"), is(new TaxExemptedProduct("123", "box of chocolates")));
-  }
-
-  @Test
-  public void headachePills() throws Exception
-  {
-    assertThat(productFactory.productFrom("packet of headache pills", "232"), is(new TaxExemptedProduct("232", "packet of headache pills")));
+    assertThat(product, is(new TenPercentTaxedProduct("1", TEN_PERCENT_TAXED_PRODUCT)));
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void notRecognizedProduct() throws Exception
   {
-    productFactory.productFrom("UNKNOW PRODUCT", "");
+    productFactory.productFrom(UNKNOWN_PRODUCT, "");
+  }
+
+  private class FakeTaxingStrategyRepository implements TaxingStrategyRepository
+  {
+    @Override public TaxingStrategy strategyFor(String productName)
+    {
+      if (productName.equals(TAX_EXEMPT_PRODUCT))
+      {
+        return TAX_EXEMPT;
+      }
+      else if(productName.equals(TEN_PERCENT_TAXED_PRODUCT))
+      {
+        return TEN_PERCENT;
+      }
+
+      throw new IllegalArgumentException();
+    }
   }
 }
