@@ -22,7 +22,7 @@ public class ProductFactoryTest
   }
 
   @Test
-  public void taxExemptStrategy() throws Exception
+  public void taxExemptProduct() throws Exception
   {
     Product product = productFactory.productFrom(TAX_EXEMPT_PRODUCT, "3");
 
@@ -30,11 +30,27 @@ public class ProductFactoryTest
   }
 
   @Test
-  public void musicCD() throws Exception
+  public void tenPercentTaxedProduct() throws Exception
   {
     Product product = productFactory.productFrom(TEN_PERCENT_TAXED_PRODUCT, "1");
 
     assertThat(product, is(new TenPercentTaxedProduct("1", TEN_PERCENT_TAXED_PRODUCT)));
+  }
+
+  @Test
+  public void importedTenPercentTaxedProduct() throws Exception
+  {
+    Product product = productFactory.productFrom("imported " + TEN_PERCENT_TAXED_PRODUCT, "1");
+
+    assertThat(product, is(new ImportedProduct(new TenPercentTaxedProduct("1", TEN_PERCENT_TAXED_PRODUCT))));
+  }
+
+  @Test
+  public void importedTaxExemptProduct() throws Exception
+  {
+    Product product = productFactory.productFrom("imported " + TAX_EXEMPT_PRODUCT, "1");
+
+    assertThat(product, is(new ImportedProduct(new TaxExemptedProduct("1", TAX_EXEMPT_PRODUCT))));
   }
 
   @Test(expected = IllegalArgumentException.class)

@@ -9,15 +9,27 @@ public class ProductFactory
     this.taxingStrategyRepository = taxingStrategyRepository;
   }
 
-  public Product productFrom(String name, String amount)
+  public Product productFrom(String description, String amount)
   {
-    switch (taxingStrategyRepository.strategyFor(name))
+    if (isImported(description))
     {
-      case TAX_EXEMPT: return new TaxExemptedProduct(amount, name);
+      String name = description.replaceAll("imported ", "");
 
-      case TEN_PERCENT: return new TenPercentTaxedProduct(amount, name);
+      return new ImportedProduct(productFrom(name, amount));
+    }
+
+    switch (taxingStrategyRepository.strategyFor(description))
+    {
+      case TAX_EXEMPT: return new TaxExemptedProduct(amount, description);
+
+      case TEN_PERCENT: return new TenPercentTaxedProduct(amount, description);
     }
 
     throw new IllegalArgumentException("not recognized Product");
+  }
+
+  private boolean isImported(String description)
+  {
+    return description.contains("imported");
   }
 }
