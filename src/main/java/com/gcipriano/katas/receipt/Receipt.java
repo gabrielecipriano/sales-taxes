@@ -2,7 +2,7 @@ package com.gcipriano.katas.receipt;
 
 public interface Receipt
 {
-  void addProduct(String description, String amount);
+  void addProduct(PresentableProduct product);
 
   void total(String amount);
 

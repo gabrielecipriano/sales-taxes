@@ -19,7 +19,7 @@ public class BulletPointReceiptTest
   @Test
   public void oneProductReceipt() throws Exception
   {
-    receipt.addProduct("PRODUCT_NAME", "PRODUCT_PRICE");
+    receipt.addProduct(new PresentableProduct("PRODUCT_NAME", "PRODUCT_PRICE"));
     receipt.total("TOTAL");
     receipt.taxTotal("TAX_TOTAL");
 
@@ -31,8 +31,8 @@ public class BulletPointReceiptTest
   @Test
   public void twoProductReceipt() throws Exception
   {
-    receipt.addProduct("PRODUCT_NAME", "PRODUCT_PRICE");
-    receipt.addProduct("ANOTHER_PRODUCT_NAME", "ANOTHER_PRODUCT_PRICE");
+    receipt.addProduct(new PresentableProduct("PRODUCT_NAME", "PRODUCT_PRICE"));
+    receipt.addProduct(new PresentableProduct("ANOTHER_PRODUCT_NAME", "ANOTHER_PRODUCT_PRICE"));
     receipt.total("TOTAL");
     receipt.taxTotal("TAX_TOTAL");
 

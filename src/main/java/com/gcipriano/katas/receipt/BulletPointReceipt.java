@@ -9,9 +9,9 @@ public class BulletPointReceipt implements Receipt
   private String total;
   private List<PresentableProduct> products = new ArrayList<>();
 
-  @Override public void addProduct(String productDescription, String productAmount)
+  @Override public void addProduct(PresentableProduct product)
   {
-    products.add(new PresentableProduct(productDescription, productAmount));
+    products.add(product);
   }
 
   @Override public void total(String amount)
