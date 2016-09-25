@@ -4,30 +4,21 @@ import com.gcipriano.katas.model.taxing.*;
 
 public class ByTaxStrategyProductFactory implements ProductFactory
 {
-  private final TaxingStrategyRepository taxingStrategyRepository;
+  private final TaxRepository taxRepository;
 
-  public ByTaxStrategyProductFactory(TaxingStrategyRepository taxingStrategyRepository)
+  public ByTaxStrategyProductFactory(TaxRepository taxRepository)
   {
-    this.taxingStrategyRepository = taxingStrategyRepository;
+    this.taxRepository = taxRepository;
   }
 
   @Override
   public Product productFrom(String description, String amount)
   {
-    if (isImported(description))
-    {
-      String name = description.replaceAll("imported ", "");
-
-      return new ImportedProduct(productFrom(name, amount));
-    }
-
-    TaxingStrategy taxingStrategy = taxingStrategyRepository.strategyFor(description);
-
-    return new NotImportedProduct(amount, description, taxingStrategy.tax());
+    return new TaxableProduct(amount, description, taxFor(description));
   }
 
-  private boolean isImported(String description)
+  private Tax taxFor(String description)
   {
-    return description.contains("imported");
+    return taxRepository.taxFor(description);
   }
 }

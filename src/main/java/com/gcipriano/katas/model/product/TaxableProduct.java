@@ -1,20 +1,21 @@
 package com.gcipriano.katas.model.product;
 
+import com.gcipriano.katas.model.taxing.Tax;
+
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
-import static java.math.BigDecimal.*;
-
-public class NotImportedProduct implements Product
+public class TaxableProduct implements Product
 {
   private final String description;
-  private final Tax tenPercent;
+  private final Tax tax;
   private BigDecimal amount;
 
-  public NotImportedProduct(String amount, String description, Tax tax)
+  public TaxableProduct(String amount, String description, Tax tax)
   {
     this.amount = new BigDecimal(amount);
     this.description = description;
-    tenPercent = tax;
+    this.tax = tax;
   }
 
   @Override public BigDecimal taxAmount()
@@ -39,12 +40,12 @@ public class NotImportedProduct implements Product
 
   private BigDecimal applyTax()
   {
-    return round(tenPercent.applyOn(amount));
+    return round(tax.applyOn(amount));
   }
 
   private BigDecimal round(BigDecimal toRound)
   {
-    return new BigDecimal(Math.round(toRound.doubleValue() * 20) / 20.0).setScale(2, ROUND_HALF_UP);
+    return new BigDecimal(Math.ceil(toRound.doubleValue() * 20) / 20).setScale(2, RoundingMode.HALF_UP);
   }
 
   @Override public boolean equals(Object o)
@@ -54,11 +55,11 @@ public class NotImportedProduct implements Product
     if (o == null || getClass() != o.getClass())
       return false;
 
-    NotImportedProduct that = (NotImportedProduct) o;
+    TaxableProduct that = (TaxableProduct) o;
 
     if (description != null ? !description.equals(that.description) : that.description != null)
       return false;
-    if (tenPercent != null ? !tenPercent.equals(that.tenPercent) : that.tenPercent != null)
+    if (tax != null ? !tax.equals(that.tax) : that.tax != null)
       return false;
     return amount != null ? amount.equals(that.amount) : that.amount == null;
 
@@ -67,16 +68,16 @@ public class NotImportedProduct implements Product
   @Override public int hashCode()
   {
     int result = description != null ? description.hashCode() : 0;
-    result = 31 * result + (tenPercent != null ? tenPercent.hashCode() : 0);
+    result = 31 * result + (tax != null ? tax.hashCode() : 0);
     result = 31 * result + (amount != null ? amount.hashCode() : 0);
     return result;
   }
 
   @Override public String toString()
   {
-    return "NotImportedProduct{" +
+    return "TaxableProduct{" +
         "description='" + description + '\'' +
-        ", tenPercent=" + tenPercent +
+        ", tax=" + tax +
         ", amount=" + amount +
         '}';
   }

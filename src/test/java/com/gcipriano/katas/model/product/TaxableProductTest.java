@@ -1,5 +1,6 @@
 package com.gcipriano.katas.model.product;
 
+import com.gcipriano.katas.model.taxing.Tax;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -8,14 +9,14 @@ import static java.math.BigDecimal.ONE;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class NotImportedProductTest
+public class TaxableProductTest
 {
   private Tax tax = new PlusOneTax();
 
   @Test
-  public void applyStrategy() throws Exception
+  public void applyTax() throws Exception
   {
-    NotImportedProduct product = new NotImportedProduct("2.2", null, tax);
+    TaxableProduct product = new TaxableProduct("2.2", null, tax);
 
     assertThat(product.taxAmount(), is(new BigDecimal("3.20")));
   }
@@ -23,7 +24,7 @@ public class NotImportedProductTest
   @Test
   public void nameAndAmount() throws Exception
   {
-    NotImportedProduct product = new NotImportedProduct("2.2", "NAME", null);
+    TaxableProduct product = new TaxableProduct("2.2", "NAME", null);
 
     assertThat(product.amount(), is(new BigDecimal("2.2")));
     assertThat(product.description(), is("NAME"));
