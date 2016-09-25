@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 public class TextInputTest
 {
   private static final Product FIXED_AMOUNTS_PRODUCT = new FixedAmountsProduct(ONE, ZERO);
-  private final BasicSpy spy = new BasicSpy();
+  private final ProductFactorySpy spy = new ProductFactorySpy();
   private final ProductFactory productFactory = new TraceableDummyProductFactory(spy);
 
   @Test
@@ -60,9 +60,9 @@ public class TextInputTest
 
   private class TraceableDummyProductFactory implements ProductFactory
   {
-    private BasicSpy spy;
+    private ProductFactorySpy spy;
 
-    public TraceableDummyProductFactory(BasicSpy spy)
+    public TraceableDummyProductFactory(ProductFactorySpy spy)
     {
       this.spy = spy;
     }
@@ -75,7 +75,7 @@ public class TextInputTest
     }
   }
 
-  private class BasicSpy
+  private class ProductFactorySpy
   {
     private final Map<String, String> calledWith = new HashMap<>();
 
