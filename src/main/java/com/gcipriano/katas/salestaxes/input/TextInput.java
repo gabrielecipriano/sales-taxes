@@ -31,7 +31,7 @@ public class TextInput implements Input
       String description = matcher.group(1);
       String amount = matcher.group(2);
 
-      products.add(new TaxableProduct(amount, description));
+      products.add(new Product(amount, description));
     }
 
     return products;

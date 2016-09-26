@@ -1,7 +1,6 @@
 package com.gcipriano.katas.salestaxes.model;
 
-import com.gcipriano.katas.salestaxes.model.ShoppingBasket;
-import com.gcipriano.katas.salestaxes.model.product.FixedAmountsProduct;
+import com.gcipriano.katas.salestaxes.model.product.Product;
 import com.gcipriano.katas.salestaxes.model.taxing.*;
 import com.gcipriano.katas.salestaxes.receipt.PresentableProduct;
 import com.gcipriano.katas.salestaxes.receipt.Receipt;
@@ -17,8 +16,8 @@ import static org.junit.Assert.*;
 
 public class ShoppingBasketTest
 {
-  private static final FixedAmountsProduct ANOTHER_PRODUCT = new FixedAmountsProduct(new BigDecimal("12.40"), new BigDecimal("2"));
-  private static final FixedAmountsProduct A_PRODUCT = new FixedAmountsProduct(new BigDecimal("100"), new BigDecimal("2.45"));
+  private static final Product ANOTHER_PRODUCT = new Product("12.40", "fixed product");
+  private static final Product A_PRODUCT = new Product("100", "fixed product");
 
   private ShoppingBasket basket;
 

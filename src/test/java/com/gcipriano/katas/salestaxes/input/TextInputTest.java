@@ -1,6 +1,6 @@
 package com.gcipriano.katas.salestaxes.input;
 
-import com.gcipriano.katas.salestaxes.model.product.TaxableProduct;
+import com.gcipriano.katas.salestaxes.model.product.Product;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
@@ -16,7 +16,7 @@ public class TextInputTest
                                       + " 1 music CD at 10.00");
 
 
-    assertThat(textInput.convert(), is(asList(new TaxableProduct("3.00", "book"), new TaxableProduct("10.00", "music CD"))));
+    assertThat(textInput.convert(), is(asList(new Product("3.00", "book"), new Product("10.00", "music CD"))));
   }
 
   @Test
@@ -26,7 +26,7 @@ public class TextInputTest
                                             + " 1 book at 4.35");
 
 
-    assertThat(textInput.convert(), is(asList(new TaxableProduct("10.30", "music CD"), new TaxableProduct("4.35", "book"))));
+    assertThat(textInput.convert(), is(asList(new Product("10.30", "music CD"), new Product("4.35", "book"))));
   }
 
   @Test
@@ -36,6 +36,6 @@ public class TextInputTest
                                             + " 1 imported book at 2.00"
     );
 
-    assertThat(textInput.convert(), is(asList(new TaxableProduct("1.00", "music CD"), new TaxableProduct("2.00", "imported book"))));
+    assertThat(textInput.convert(), is(asList(new Product("1.00", "music CD"), new Product("2.00", "imported book"))));
   }
 }
