@@ -17,7 +17,7 @@ public class TaxableProductFactory implements ProductFactory
   {
     try
     {
-      return new TaxableProduct(amount, description, taxFor(description));
+      return new TaxableProduct(amount, description);
     }
     catch (RuntimeException e)
     {

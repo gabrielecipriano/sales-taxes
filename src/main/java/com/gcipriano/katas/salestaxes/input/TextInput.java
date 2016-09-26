@@ -1,7 +1,6 @@
 package com.gcipriano.katas.salestaxes.input;
 
-import com.gcipriano.katas.salestaxes.model.product.Product;
-import com.gcipriano.katas.salestaxes.model.product.ProductFactory;
+import com.gcipriano.katas.salestaxes.model.product.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +12,12 @@ import static java.lang.Integer.parseInt;
 public class TextInput implements Input
 {
   private static final String PRODUCT_REGEX_PATTERN = "\\d* (\\D*) at (\\d*\\.\\d{2})";
-  private final ProductFactory productFactory;
 
   private String textInput;
 
-  public TextInput(String textInput, ProductFactory productFactory)
+  public TextInput(String textInput)
   {
     this.textInput = textInput;
-    this.productFactory = productFactory;
   }
 
   public List<Product> convert()
@@ -34,7 +31,7 @@ public class TextInput implements Input
       String description = matcher.group(1);
       String amount = matcher.group(2);
 
-      products.add(productFactory.productFrom(description, amount));
+      products.add(new TaxableProduct(amount, description));
     }
 
     return products;

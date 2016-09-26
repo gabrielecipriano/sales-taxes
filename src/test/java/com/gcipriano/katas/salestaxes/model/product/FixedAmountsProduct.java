@@ -1,7 +1,5 @@
 package com.gcipriano.katas.salestaxes.model.product;
 
-import com.gcipriano.katas.salestaxes.model.product.Product;
-
 import java.math.BigDecimal;
 
 public class FixedAmountsProduct implements Product
@@ -15,11 +13,6 @@ public class FixedAmountsProduct implements Product
     this.fixedAmount = fixedAmount;
   }
 
-  @Override public BigDecimal taxAmount()
-  {
-    return fixedTaxAmount;
-  }
-
   @Override public BigDecimal amount()
   {
     return fixedAmount;
@@ -30,8 +23,4 @@ public class FixedAmountsProduct implements Product
     return "fixed product";
   }
 
-  @Override public BigDecimal taxedPrice()
-  {
-    return fixedAmount.add(fixedTaxAmount);
-  }
 }

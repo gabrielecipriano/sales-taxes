@@ -1,34 +1,39 @@
 package com.gcipriano.katas.salestaxes.usecase;
 
-import com.gcipriano.katas.salestaxes.input.Input;
 import com.gcipriano.katas.salestaxes.model.product.Product;
+import com.gcipriano.katas.salestaxes.model.taxing.*;
 import com.gcipriano.katas.salestaxes.receipt.PresentableProduct;
 import com.gcipriano.katas.salestaxes.receipt.Receipt;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static java.math.BigDecimal.ZERO;
 
 public class ShoppingBasket
 {
-  private Input input;
   private final Receipt receipt;
+  private final TaxFactory taxFactory;
+  private final RoundingPolicy roundingPolicy;
 
-  public ShoppingBasket(Input input, Receipt receipt)
+  public ShoppingBasket(Receipt receipt, TaxFactory taxFactory, RoundingPolicy roundingPolicy)
   {
-    this.input = input;
     this.receipt = receipt;
+    this.taxFactory = taxFactory;
+    this.roundingPolicy = roundingPolicy;
   }
 
-  public String receipt()
+  public String receiptFor(List<Product> products)
   {
     BigDecimal taxTotalAmount = ZERO;
     BigDecimal totalAmount = ZERO;
 
-    for (Product product : input.convert())
+    for (Product product : products)
     {
-      BigDecimal finalPrice = product.taxedPrice();
-      taxTotalAmount = taxTotalAmount.add(product.taxAmount());
+      BigDecimal taxAmount = round(taxFor(product).applyOn(product.amount()));
+      BigDecimal finalPrice = taxAmount.add(product.amount());
+
+      taxTotalAmount = taxTotalAmount.add(taxAmount);
       totalAmount = totalAmount.add(finalPrice);
 
       receipt.addProduct(new PresentableProduct(product.description(), finalPrice.toString()));
@@ -38,5 +43,15 @@ public class ShoppingBasket
     receipt.total(totalAmount.toString());
 
     return receipt.render();
+  }
+
+  private BigDecimal round(BigDecimal toRound)
+  {
+    return roundingPolicy.round(toRound);
+  }
+
+  private Tax taxFor(Product product)
+  {
+    return taxFactory.taxFor(product.description());
   }
 }

@@ -1,21 +1,19 @@
 package com.gcipriano.katas.salestaxes.receipt;
 
-import com.gcipriano.katas.salestaxes.receipt.BulletPointReceipt;
-import com.gcipriano.katas.salestaxes.receipt.PresentableProduct;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
-public class BulletPointReceiptTest
+public class BulletPointReceiptBuilderTest
 {
-  private BulletPointReceipt receipt;
+  private BulletPointReceiptBuilder receipt;
 
   @Before
   public void setUp() throws Exception
   {
-    receipt = new BulletPointReceipt();
+    receipt = new BulletPointReceiptBuilder();
   }
 
   @Test

@@ -3,7 +3,7 @@ package com.gcipriano.katas.salestaxes.receipt;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BulletPointReceipt implements Receipt
+public class BulletPointReceiptBuilder implements Receipt
 {
   private String taxTotal;
   private String total;

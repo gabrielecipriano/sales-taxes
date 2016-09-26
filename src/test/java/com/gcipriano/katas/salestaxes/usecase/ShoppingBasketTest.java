@@ -1,11 +1,10 @@
 package com.gcipriano.katas.salestaxes.usecase;
 
-import com.gcipriano.katas.salestaxes.input.Input;
 import com.gcipriano.katas.salestaxes.model.product.FixedAmountsProduct;
-import com.gcipriano.katas.salestaxes.model.product.Product;
+import com.gcipriano.katas.salestaxes.model.taxing.*;
 import com.gcipriano.katas.salestaxes.receipt.PresentableProduct;
 import com.gcipriano.katas.salestaxes.receipt.Receipt;
-import com.gcipriano.katas.salestaxes.usecase.ShoppingBasket;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -20,31 +19,21 @@ public class ShoppingBasketTest
   private static final FixedAmountsProduct ANOTHER_PRODUCT = new FixedAmountsProduct(new BigDecimal("12.40"), new BigDecimal("2"));
   private static final FixedAmountsProduct A_PRODUCT = new FixedAmountsProduct(new BigDecimal("100"), new BigDecimal("2.45"));
 
+  private ShoppingBasket basket;
+
+  @Before
+  public void setUp() throws Exception
+  {
+    basket = new ShoppingBasket(new FakeReceipt(), new FakeTaxFactory(), new Nearest05RoundingPolicy());
+  }
+
   @Test
   public void oneProductReceipt() throws Exception
   {
-    ShoppingBasket basket = new ShoppingBasket(new FixedProductsInput(A_PRODUCT, ANOTHER_PRODUCT),
-                                               new FakeReceipt());
-
-    assertThat(basket.receipt(), is("102.45 fixed product\n"
-                                  + "14.40 fixed product\n"
-                                  + "T 116.85\n"
-                                  + "taxT 4.45"));
-  }
-
-  private class FixedProductsInput implements Input
-  {
-    private List<Product> fixedAmountsProducts;
-
-    FixedProductsInput(FixedAmountsProduct... fixedAmountsProducts)
-    {
-      this.fixedAmountsProducts = asList(fixedAmountsProducts);
-    }
-
-    @Override public List<Product> convert()
-    {
-      return fixedAmountsProducts;
-    }
+    assertThat(basket.receiptFor(asList(A_PRODUCT, ANOTHER_PRODUCT)), is("107.00 fixed product\n"
+                                                                       + "13.30 fixed product\n"
+                                                                       + "T 120.30\n"
+                                                                       + "taxT 7.90"));
   }
 
   private class FakeReceipt implements Receipt
@@ -78,6 +67,19 @@ public class ShoppingBasketTest
       }
 
       return receipt + "T " + total + "\ntaxT " + taxTotal;
+    }
+  }
+
+  private class FakeTaxFactory implements TaxFactory
+  {
+    @Override public Tax taxFor(String description)
+    {
+      if (!description.equals("fixed products"))
+      {
+        return new PercentageTax(7);
+      }
+
+      throw new TaxNotFoundException(null);
     }
   }
 }

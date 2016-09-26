@@ -1,6 +1,5 @@
 package com.gcipriano.katas.salestaxes.model.product;
 
-import com.gcipriano.katas.salestaxes.model.product.*;
 import com.gcipriano.katas.salestaxes.model.taxing.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +27,7 @@ public class TaxableProductFactoryTest
   {
     Product product = productFactory.productFrom(PRODUCT_NAME, "3");
 
-    assertThat(product, is(new TaxableProduct(PRODUCT_AMOUNT, PRODUCT_NAME, TAX)));
+    assertThat(product, is(new TaxableProduct(PRODUCT_AMOUNT, PRODUCT_NAME)));
   }
 
   @Test(expected = ProductDescriptionNotRecognizedException.class)
