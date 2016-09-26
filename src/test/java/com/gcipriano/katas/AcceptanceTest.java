@@ -5,6 +5,7 @@ import com.gcipriano.katas.model.product.TaxableProductFactory;
 import com.gcipriano.katas.model.product.catalog.InMemoryExemptedProductCatalog;
 import com.gcipriano.katas.model.taxing.InMemoryTaxFactory;
 import com.gcipriano.katas.receipt.BulletPointReceipt;
+import com.gcipriano.katas.usecase.ShoppingBasket;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
@@ -40,8 +41,7 @@ public class AcceptanceTest
   {
     ShoppingBasket shoppingBasket = new ShoppingBasket(new TextInput("1 imported box of chocolates at 10.00 "
                                                                    + "1 imported bottle of perfume at 47.50",
-                                                                     new TaxableProductFactory(new InMemoryTaxFactory(
-                                                                         productCatalog))),
+                                                                     new TaxableProductFactory(new InMemoryTaxFactory(productCatalog))),
                                                        new BulletPointReceipt());
 
     assertThat(shoppingBasket.receipt(), is("1 imported box of chocolates: 10.50\n"

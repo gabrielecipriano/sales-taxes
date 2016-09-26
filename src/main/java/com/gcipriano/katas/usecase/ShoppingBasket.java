@@ -1,4 +1,4 @@
-package com.gcipriano.katas;
+package com.gcipriano.katas.usecase;
 
 import com.gcipriano.katas.input.Input;
 import com.gcipriano.katas.model.product.Product;

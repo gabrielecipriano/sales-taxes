@@ -1,26 +1,23 @@
-package com.gcipriano.katas;
+package com.gcipriano.katas.usecase;
 
 import com.gcipriano.katas.input.Input;
 import com.gcipriano.katas.model.product.FixedAmountsProduct;
 import com.gcipriano.katas.model.product.Product;
 import com.gcipriano.katas.receipt.*;
+import com.gcipriano.katas.usecase.ShoppingBasket;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.*;
 
 import static java.util.Arrays.asList;
-import static java.util.Collections.singletonList;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class ShoppingBasketTest
 {
-
-  private static final FixedAmountsProduct ANOTHER_PRODUCT = new FixedAmountsProduct(new BigDecimal("12.40"),
-                                                                                     new BigDecimal("2"));
-  private static final FixedAmountsProduct A_PRODUCT = new FixedAmountsProduct(new BigDecimal("100"),
-                                                                               new BigDecimal("2.45"));
+  private static final FixedAmountsProduct ANOTHER_PRODUCT = new FixedAmountsProduct(new BigDecimal("12.40"), new BigDecimal("2"));
+  private static final FixedAmountsProduct A_PRODUCT = new FixedAmountsProduct(new BigDecimal("100"), new BigDecimal("2.45"));
 
   @Test
   public void oneProductReceipt() throws Exception
@@ -30,7 +27,7 @@ public class ShoppingBasketTest
 
     assertThat(basket.receipt(), is("102.45 fixed product\n"
                                   + "14.40 fixed product\n"
-                                  + "T 116.85 "
+                                  + "T 116.85\n"
                                   + "taxT 4.45"));
   }
 
@@ -38,7 +35,7 @@ public class ShoppingBasketTest
   {
     private List<Product> fixedAmountsProducts;
 
-    public FixedProductsInput(FixedAmountsProduct ... fixedAmountsProducts)
+    FixedProductsInput(FixedAmountsProduct... fixedAmountsProducts)
     {
       this.fixedAmountsProducts = asList(fixedAmountsProducts);
     }
@@ -79,7 +76,7 @@ public class ShoppingBasketTest
         receipt += product.amount() + " " + product.description() + "\n";
       }
 
-      return receipt + "T " + total + " taxT " + taxTotal;
+      return receipt + "T " + total + "\ntaxT " + taxTotal;
     }
   }
 }
