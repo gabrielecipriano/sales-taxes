@@ -23,10 +23,10 @@ public class InMemoryTaxFactory implements TaxFactory
 
   private ImportedTax importedTaxFor(String description)
   {
-    return new ImportedTax(standardTaxFor(removeImportedFromName(description)), importedTax());
+    return new ImportedTax(standardTaxFor(realProductName(description)), importedTax());
   }
 
-  private String removeImportedFromName(String description)
+  private String realProductName(String description)
   {
     return description.replaceAll("imported ", "");
   }
