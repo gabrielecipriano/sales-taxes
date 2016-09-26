@@ -27,15 +27,13 @@ public class PercentageTax implements Tax
 
     PercentageTax that = (PercentageTax) o;
 
-    return percentageTaxAmount != null ?
-        percentageTaxAmount.equals(that.percentageTaxAmount) :
-        that.percentageTaxAmount == null;
+    return percentageTaxAmount.equals(that.percentageTaxAmount);
 
   }
 
   @Override public int hashCode()
   {
-    return percentageTaxAmount != null ? percentageTaxAmount.hashCode() : 0;
+    return percentageTaxAmount.hashCode();
   }
 
   @Override public String toString()
