@@ -23,16 +23,16 @@ public class ShoppingBasket
     this.roundingPolicy = roundingPolicy;
   }
 
-  public String receiptFor(List<Product> products)
+  public Receipt receiptFor(List<Product> products)
   {
     BigDecimal taxTotalAmount = ZERO;
     BigDecimal totalAmount = ZERO;
 
     for (Product product : products)
     {
-      BigDecimal taxAmount = round(taxFor(product).applyOn(product.amount()));
-      BigDecimal finalPrice = taxAmount.add(product.amount());
+      BigDecimal taxAmount = round(taxOn(product));
 
+      BigDecimal finalPrice = taxAmount.add(product.amount());
       taxTotalAmount = taxTotalAmount.add(taxAmount);
       totalAmount = totalAmount.add(finalPrice);
 
@@ -42,7 +42,12 @@ public class ShoppingBasket
     receipt.taxTotal(taxTotalAmount.toString());
     receipt.total(totalAmount.toString());
 
-    return receipt.render();
+    return receipt;
+  }
+
+  private BigDecimal taxOn(Product product)
+  {
+    return taxFor(product).applyOn(product.amount());
   }
 
   private BigDecimal round(BigDecimal toRound)

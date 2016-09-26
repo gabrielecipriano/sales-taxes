@@ -30,7 +30,7 @@ public class ShoppingBasketTest
   @Test
   public void oneProductReceipt() throws Exception
   {
-    assertThat(basket.receiptFor(asList(A_PRODUCT, ANOTHER_PRODUCT)), is("107.00 fixed product\n"
+    assertThat(basket.receiptFor(asList(A_PRODUCT, ANOTHER_PRODUCT)).render(), is("107.00 fixed product\n"
                                                                        + "13.27 fixed product\n"
                                                                        + "T 120.27\n"
                                                                        + "taxT 7.87"));
