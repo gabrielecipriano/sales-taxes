@@ -1,5 +1,6 @@
-package com.gcipriano.katas.salestaxes.usecase;
+package com.gcipriano.katas.salestaxes.model;
 
+import com.gcipriano.katas.salestaxes.model.ShoppingBasket;
 import com.gcipriano.katas.salestaxes.model.product.FixedAmountsProduct;
 import com.gcipriano.katas.salestaxes.model.taxing.*;
 import com.gcipriano.katas.salestaxes.receipt.PresentableProduct;

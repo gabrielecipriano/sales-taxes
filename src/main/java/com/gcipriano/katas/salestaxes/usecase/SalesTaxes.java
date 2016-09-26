@@ -1,6 +1,7 @@
 package com.gcipriano.katas.salestaxes.usecase;
 
 import com.gcipriano.katas.salestaxes.input.Input;
+import com.gcipriano.katas.salestaxes.model.ShoppingBasket;
 import com.gcipriano.katas.salestaxes.receipt.Receipt;
 
 public class SalesTaxes

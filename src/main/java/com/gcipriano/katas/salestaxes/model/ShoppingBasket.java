@@ -1,4 +1,4 @@
-package com.gcipriano.katas.salestaxes.usecase;
+package com.gcipriano.katas.salestaxes.model;
 
 import com.gcipriano.katas.salestaxes.model.product.Product;
 import com.gcipriano.katas.salestaxes.model.taxing.*;

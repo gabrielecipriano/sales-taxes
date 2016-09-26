@@ -6,7 +6,7 @@ import com.gcipriano.katas.salestaxes.model.taxing.InMemoryTaxFactory;
 import com.gcipriano.katas.salestaxes.model.taxing.Nearest05RoundingPolicy;
 import com.gcipriano.katas.salestaxes.receipt.BulletPointReceiptBuilder;
 import com.gcipriano.katas.salestaxes.usecase.SalesTaxes;
-import com.gcipriano.katas.salestaxes.usecase.ShoppingBasket;
+import com.gcipriano.katas.salestaxes.model.ShoppingBasket;
 import org.junit.Before;
 import org.junit.Test;
 
