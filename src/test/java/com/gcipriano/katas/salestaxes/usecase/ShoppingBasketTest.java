@@ -24,16 +24,16 @@ public class ShoppingBasketTest
   @Before
   public void setUp() throws Exception
   {
-    basket = new ShoppingBasket(new FakeReceipt(), new FakeTaxFactory(), new Nearest05RoundingPolicy());
+    basket = new ShoppingBasket(new FakeReceipt(), new FakeTaxFactory(), new TwoDecimalRoundingPolicy());
   }
 
   @Test
   public void oneProductReceipt() throws Exception
   {
     assertThat(basket.receiptFor(asList(A_PRODUCT, ANOTHER_PRODUCT)), is("107.00 fixed product\n"
-                                                                       + "13.30 fixed product\n"
-                                                                       + "T 120.30\n"
-                                                                       + "taxT 7.90"));
+                                                                       + "13.27 fixed product\n"
+                                                                       + "T 120.27\n"
+                                                                       + "taxT 7.87"));
   }
 
   private class FakeReceipt implements Receipt
@@ -80,6 +80,14 @@ public class ShoppingBasketTest
       }
 
       throw new TaxNotFoundException(null);
+    }
+  }
+
+  private class TwoDecimalRoundingPolicy implements RoundingPolicy
+  {
+    @Override public BigDecimal round(BigDecimal toRound)
+    {
+      return toRound.setScale(2, BigDecimal.ROUND_UP);
     }
   }
 }
