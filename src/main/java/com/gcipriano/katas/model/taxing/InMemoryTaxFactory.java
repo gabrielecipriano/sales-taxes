@@ -13,7 +13,7 @@ public class InMemoryTaxFactory implements TaxFactory
 
   @Override public Tax taxFor(String description)
   {
-    if (description.contains("imported"))
+    if (isImported(description))
     {
       return importedTaxFor(description);
     }
@@ -23,7 +23,17 @@ public class InMemoryTaxFactory implements TaxFactory
 
   private ImportedTax importedTaxFor(String description)
   {
-    return new ImportedTax(standardTaxFor(description.replaceAll("imported ", "")), new PercentageTax(5));
+    return new ImportedTax(standardTaxFor(removeImportedFromName(description)), importedTax());
+  }
+
+  private String removeImportedFromName(String description)
+  {
+    return description.replaceAll("imported ", "");
+  }
+
+  private PercentageTax importedTax()
+  {
+    return new PercentageTax(5);
   }
 
   private Tax standardTaxFor(String description)
@@ -34,5 +44,10 @@ public class InMemoryTaxFactory implements TaxFactory
     }
 
     return new PercentageTax(10);
+  }
+
+  private boolean isImported(String description)
+  {
+    return description.contains("imported");
   }
 }
