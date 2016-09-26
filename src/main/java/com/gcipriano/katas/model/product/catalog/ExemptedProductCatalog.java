@@ -1,6 +1,6 @@
 package com.gcipriano.katas.model.product.catalog;
 
-public interface ProductCatalog
+public interface ExemptedProductCatalog
 {
   boolean isExempted(String description);
 }

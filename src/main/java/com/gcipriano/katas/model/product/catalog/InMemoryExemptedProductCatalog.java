@@ -3,15 +3,13 @@ package com.gcipriano.katas.model.product.catalog;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Arrays.asList;
-
-public class InMemoryProductCatalog implements ProductCatalog
+public class InMemoryExemptedProductCatalog implements ExemptedProductCatalog
 {
   private List<String> exemptedProducts = new ArrayList<>();
 
-  public InMemoryProductCatalog()
+  public InMemoryExemptedProductCatalog(List<String> exemptedProducts)
   {
-    exemptedProducts = asList("book", "chocolate bar", "box of chocolates", "packet of headache pills");
+    this.exemptedProducts = exemptedProducts;
   }
 
   @Override public boolean isExempted(String description)

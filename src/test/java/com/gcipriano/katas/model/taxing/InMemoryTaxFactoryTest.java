@@ -1,6 +1,6 @@
 package com.gcipriano.katas.model.taxing;
 
-import com.gcipriano.katas.model.product.catalog.ProductCatalog;
+import com.gcipriano.katas.model.product.catalog.ExemptedProductCatalog;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ public class InMemoryTaxFactoryTest
   @Before
   public void setUp() throws Exception
   {
-    inMemoryTaxRepository = new InMemoryTaxFactory(new FakeProductCatalog());
+    inMemoryTaxRepository = new InMemoryTaxFactory(new FakeExemptedProductCatalog());
   }
 
   @Test
@@ -43,7 +43,7 @@ public class InMemoryTaxFactoryTest
     assertThat(inMemoryTaxRepository.taxFor("imported NORMAL_PRODUCT"), is(new ImportedTax(new PercentageTax(10), new PercentageTax(5))));
   }
 
-  private class FakeProductCatalog implements ProductCatalog
+  private class FakeExemptedProductCatalog implements ExemptedProductCatalog
   {
     @Override
     public boolean isExempted(String description)

@@ -1,14 +1,14 @@
 package com.gcipriano.katas.model.taxing;
 
-import com.gcipriano.katas.model.product.catalog.ProductCatalog;
+import com.gcipriano.katas.model.product.catalog.ExemptedProductCatalog;
 
 public class InMemoryTaxFactory implements TaxFactory
 {
-  private ProductCatalog productCatalog;
+  private ExemptedProductCatalog exemptedProductCatalog;
 
-  public InMemoryTaxFactory(ProductCatalog productCatalog)
+  public InMemoryTaxFactory(ExemptedProductCatalog exemptedProductCatalog)
   {
-    this.productCatalog = productCatalog;
+    this.exemptedProductCatalog = exemptedProductCatalog;
   }
 
   @Override public Tax taxFor(String description)
@@ -28,7 +28,7 @@ public class InMemoryTaxFactory implements TaxFactory
 
   private Tax standardTaxFor(String description)
   {
-    if (productCatalog.isExempted(description))
+    if (exemptedProductCatalog.isExempted(description))
     {
       return new PercentageTax(0);
     }
