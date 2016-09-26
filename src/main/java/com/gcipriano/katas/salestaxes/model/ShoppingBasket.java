@@ -1,6 +1,7 @@
 package com.gcipriano.katas.salestaxes.model;
 
 import com.gcipriano.katas.salestaxes.model.product.Product;
+import com.gcipriano.katas.salestaxes.rounding.RoundingPolicy;
 import com.gcipriano.katas.salestaxes.model.taxing.*;
 import com.gcipriano.katas.salestaxes.receipt.PresentableProduct;
 import com.gcipriano.katas.salestaxes.receipt.Receipt;

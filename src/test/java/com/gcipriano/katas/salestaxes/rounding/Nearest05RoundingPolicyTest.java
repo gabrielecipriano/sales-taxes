@@ -1,5 +1,6 @@
-package com.gcipriano.katas.salestaxes.model.taxing;
+package com.gcipriano.katas.salestaxes.rounding;
 
+import com.gcipriano.katas.salestaxes.rounding.Nearest05RoundingPolicy;
 import org.junit.Test;
 
 import java.math.BigDecimal;

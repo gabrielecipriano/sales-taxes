@@ -3,7 +3,7 @@ package com.gcipriano.katas.salestaxes;
 import com.gcipriano.katas.salestaxes.input.TextInput;
 import com.gcipriano.katas.salestaxes.model.product.catalog.InMemoryExemptedProductCatalog;
 import com.gcipriano.katas.salestaxes.model.taxing.InMemoryTaxFactory;
-import com.gcipriano.katas.salestaxes.model.taxing.Nearest05RoundingPolicy;
+import com.gcipriano.katas.salestaxes.rounding.Nearest05RoundingPolicy;
 import com.gcipriano.katas.salestaxes.receipt.BulletPointReceiptBuilder;
 import com.gcipriano.katas.salestaxes.usecase.SalesTaxes;
 import com.gcipriano.katas.salestaxes.model.ShoppingBasket;

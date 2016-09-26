@@ -1,4 +1,4 @@
-package com.gcipriano.katas.salestaxes.model.taxing;
+package com.gcipriano.katas.salestaxes.rounding;
 
 import java.math.BigDecimal;
 
