@@ -13,7 +13,7 @@ public class Product
     this.description = description;
   }
 
-  public BigDecimal amount()
+  public BigDecimal netPrice()
   {
     return amount;
   }

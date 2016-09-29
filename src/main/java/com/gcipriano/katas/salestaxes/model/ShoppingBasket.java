@@ -33,7 +33,7 @@ public class ShoppingBasket
     {
       BigDecimal taxAmount = round(taxOn(product));
 
-      BigDecimal finalPrice = taxAmount.add(product.amount());
+      BigDecimal finalPrice = taxAmount.add(product.netPrice());
       taxTotalAmount = taxTotalAmount.add(taxAmount);
       totalAmount = totalAmount.add(finalPrice);
 
@@ -48,7 +48,7 @@ public class ShoppingBasket
 
   private BigDecimal taxOn(Product product)
   {
-    return taxFor(product).applyOn(product.amount());
+    return taxFor(product).applyOn(product.netPrice());
   }
 
   private BigDecimal round(BigDecimal toRound)

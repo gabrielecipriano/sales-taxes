@@ -1,14 +1,13 @@
 package com.gcipriano.katas.salestaxes.model;
 
+import com.gcipriano.katas.salestaxes.dummies.FakeTaxFactory;
+import com.gcipriano.katas.salestaxes.dummies.TwoDecimalRoundingPolicy;
 import com.gcipriano.katas.salestaxes.model.product.Product;
-import com.gcipriano.katas.salestaxes.rounding.RoundingPolicy;
-import com.gcipriano.katas.salestaxes.model.taxing.*;
 import com.gcipriano.katas.salestaxes.receipt.PresentableProduct;
 import com.gcipriano.katas.salestaxes.receipt.Receipt;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 import static java.util.Arrays.asList;
@@ -71,24 +70,4 @@ public class ShoppingBasketTest
     }
   }
 
-  private class FakeTaxFactory implements TaxFactory
-  {
-    @Override public Tax taxFor(String description)
-    {
-      if (!description.equals("fixed products"))
-      {
-        return new PercentageTax(7);
-      }
-
-      throw new TaxNotFoundException(null);
-    }
-  }
-
-  private class TwoDecimalRoundingPolicy implements RoundingPolicy
-  {
-    @Override public BigDecimal round(BigDecimal toRound)
-    {
-      return toRound.setScale(2, BigDecimal.ROUND_UP);
-    }
-  }
 }

@@ -14,7 +14,7 @@ public class ProductTest
   {
     Product product = new Product("2.2", "NAME");
 
-    assertThat(product.amount(), is(new BigDecimal("2.2")));
+    assertThat(product.netPrice(), is(new BigDecimal("2.2")));
     assertThat(product.description(), is("NAME"));
   }
 }
